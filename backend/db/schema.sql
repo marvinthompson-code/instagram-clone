@@ -17,3 +17,26 @@ CREATE TABLE users (
     profile_picture VARCHAR,
     bio VARCHAR
 );
+
+CREATE TABLE posts (
+    id SERIAL PRIMARY KEY,
+    post_image_url VARCHAR,
+    owner_id VARCHAR REFERENCES users(id) ON DELETE CASCADE,
+    caption VARCHAR,
+    time_stamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE hashtags (
+    id SERIAL PRIMARY KEY,
+    owner_id VARCHAR REFERENCES users(id) ON DELETE CASCADE,
+    post_id INT REFERENCES posts(id) ON DELETE CASCADE,
+    body VARCHAR
+);
+
+CREATE TABLE likes (
+    id SERIAL PRIMARY KEY,
+    liker_id VARCHAR REFERENCES users(id) ON DELETE CASCADE,
+    post_id INT REFERENCES posts(id) ON DELETE CASCADE, 
+    CONSTRAINT UC_like UNIQUE(liker_id, post_id)
+);
+
