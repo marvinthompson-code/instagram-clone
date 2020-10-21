@@ -85,9 +85,59 @@ const deleteSingleUser = async (req, res, next) => {
   }
 };
 
+const updateUserById = async (req, res, next) => {
+  try {
+    let { id } = req.params;
+    let { full_name, bio, email } = req.body;
+    let user = await db.one(
+      "UPDATE users SET full_name=$1, bio=$2, email=$3 WHERE id=$4 RETURNING *",
+      [full_name, bio, email, id]
+    );
+    res.status(200).json({
+      status: "Successful",
+      message: "Successfully Updated a User by ID",
+      body: {
+        user,
+      },
+    });
+  } catch (error) {
+    res.json(404).json({
+      status: "Unsuccessful",
+      message: "Could not update a User by ID",
+    });
+    next(error);
+  }
+};
+
+const updateProfilePic = async (req, res, next) => {
+  try {
+    let { id } = req.params;
+    let { profile_picture } = req.body;
+    let user = await db.one(
+      "UPDATE users SET profile_picture = $1 WHERE id=$2 RETURNING *",
+      [profile_picture, id]
+    );
+    res.status(200).json({
+      status: "Successful",
+      message: `Profile Picture for user at id:${id} has been Updated!`,
+      body: {
+        user,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: "Unsuccessful",
+      message: "Could not update user",
+    });
+    next(error);
+  }
+};
+
 module.exports = {
   createUser,
   getAllUsers,
   getSingleUserById,
   deleteSingleUser,
+  updateUserById,
+  updateProfilePic
 };
