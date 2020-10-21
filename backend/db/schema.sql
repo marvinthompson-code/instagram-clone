@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS instagram_clone_db;
-CREATE DATABASE instagram_clone_db;
+-- DROP DATABASE IF EXISTS instagram_clone_db;
+-- CREATE DATABASE instagram_clone_db;
 
-\c instagram_clone_db;
+-- \c instagram_clone_db;
 
 DROP TABLE IF EXISTS hashtags;
 DROP TABLE IF EXISTS likes;
