@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { asyncLogout } from "./features/User/userSlice";
 import { logout } from "./util/firebaseFunctions";
 import { recieveToken } from "./features/User/tokenSlice";
+import "./css/Nav.css"
 
 const Nav = () => {
   const dispatch = useDispatch();
@@ -13,13 +14,13 @@ const Nav = () => {
     if (user) {
       return (
         <>
-          <NavLink to={"/feed"} activeClassName={"navItem"}>
+          <NavLink to={"/feed"} activeClassName={"nav-item"}>
             Feed
           </NavLink>
-          <NavLink exact to={`/profile/${user.id}`} activeClassName={"navItem"}>
+          <NavLink exact to={`/profile/${user.id}`} activeClassName={"nav-item"}>
             Profile
           </NavLink>
-          <button onClick={handleClick} className={"navItem"}>
+          <button onClick={handleClick} className={"nav-item"}>
             Log Out
           </button>
         </>
@@ -27,10 +28,7 @@ const Nav = () => {
     } else {
       return (
         <>
-          <NavLink to={"/login"} activeClassName={"navItem"}>
-            Log In
-          </NavLink>
-          <NavLink to={"/signup"} activeClassName={"navItem"}>
+          <NavLink to={"/signup"} activeClassName={"nav-item"}>
             Sign up
           </NavLink>
         </>
@@ -45,7 +43,12 @@ const Nav = () => {
     history.push("/login");
   };
 
-  return <nav className="nav">{displayButtons()}</nav>;
+  return <nav className="nav">
+      <div className="container">
+
+      {displayButtons()}
+      </div>
+      </nav>;
 };
 
 export default Nav;

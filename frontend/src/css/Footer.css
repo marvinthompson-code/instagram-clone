@@ -1,0 +1,24 @@
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: unset;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0 auto;
+    padding: 38px auto;
+}
+
+.footer-item {
+    padding: 5px 10px;
+    border: 0;
+    vertical-align: baseline;
+    text-align: -webkit-match-parent;
+    display: inline-block;
+    margin-bottom: 7px;
+    margin-right: 16px;
+}

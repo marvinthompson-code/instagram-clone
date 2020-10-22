@@ -1,0 +1,7 @@
+.nav {
+    background-color: unset;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+}
