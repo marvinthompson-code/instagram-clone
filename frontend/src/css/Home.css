@@ -19,3 +19,71 @@
   padding: 6%;
   justify-content: center;
 }
+
+.homeContainer {
+  margin: 32px auto 0;
+  padding-bottom: 32px;
+  justify-content: center;
+  max-width: 935px;
+}
+
+.loginColumn {
+  margin-top: 12px;
+}
+
+.nam {
+  margin-right: 5px;
+}
+
+.phone {
+  width: 100%;
+}
+
+.imageColumn {
+  height: 618px;
+  margin-left: -35px;
+  margin-right: -15px;
+  margin: 0 0 10px;
+  padding: 10px 0;
+  position: relative;
+  margin-top: 12px;
+  background-repeat: no-repeat;
+  background-image: url('./images/instagramPhone.png');
+  background-size: cover;
+  background-position: center;
+}
+
+#carouselExampleSlidesOnly{
+    margin-left: 32%;
+    margin-top: 18%;
+    margin-right: 12%;
+}
+
+.screenshotCarouselImg {
+    height: 440px;
+    width: 200px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 500px) {
+  .imageColumn {
+    display: none;
+  } /* show it on small screens */
+}
+
+@media screen and (min-width: 501px) and (max-width: 768px) {
+    .imageColumn {
+        height: 550px;
+    } 
+    .screenshotCarouselImg {
+        height:389px;
+        width: 200px;
+    }
+    #carouselExampleSlidesOnly{
+        margin-left: 31%;
+        margin-top: 20%;
+        margin-right: 9%;
+    }
+    
+    /* show it on small screens */
+  }
+  

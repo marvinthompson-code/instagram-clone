@@ -16,12 +16,18 @@
     padding: 6%;
     padding-top: unset;
     padding-bottom: unset;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .passwordDiv {
     padding: 6%;
     padding-top: unset;
     padding-bottom: unset;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .buttonDiv {
@@ -31,4 +37,7 @@
 
 .submitButton {
     width: 100%;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
 }
