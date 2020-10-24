@@ -6,7 +6,11 @@ import "./App.css";
 import firebase from "./firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
+
+// componenets
 import Home from '../src/features/Home/Home'
+import SignUp from '../src/features/SignUp/SignUp'
+
 
 import Nav from "./Nav";
 import Footer from "./Footer";
@@ -26,6 +30,10 @@ function App() {
       <Switch>
         <Route exact path={"/"}>
           <Home />
+        </Route>
+
+        <Route exact path={"/signup"}>
+          <SignUp />
         </Route>
 
         <Route exact path={"/about"}></Route>

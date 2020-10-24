@@ -2,10 +2,9 @@ import React from "react";
 import Login from "../Login/Login";
 import "../../css/Home.css";
 import { NavLink } from "react-router-dom";
-import instagramSlide1 from "../../css/images/instaslide1.jpg"
-import instagramSlide2 from "../../css/images/instaslide2.jpg"
-import instagramSlide3 from "../../css/images/instaslide3.jpg"
-
+import instagramSlide1 from "../../css/images/instaslide1.jpg";
+import instagramSlide2 from "../../css/images/instaslide2.jpg";
+import instagramSlide3 from "../../css/images/instaslide3.jpg";
 
 const Home = () => {
   return (
@@ -19,13 +18,25 @@ const Home = () => {
           >
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <img className="d-block w-100 screenshotCarouselImg" src={instagramSlide1} alt="First slide" />
+                <img
+                  className="d-block w-100 screenshotCarouselImg"
+                  src={instagramSlide1}
+                  alt="First slide"
+                />
               </div>
               <div className="carousel-item">
-                <img className="d-block w-100 screenshotCarouselImg" src={instagramSlide2} alt="Second slide" />
+                <img
+                  className="d-block w-100 screenshotCarouselImg"
+                  src={instagramSlide2}
+                  alt="Second slide"
+                />
               </div>
               <div className="carousel-item">
-                <img className="d-block w-100 screenshotCarouselImg" src={instagramSlide3} alt="Third slide" />
+                <img
+                  className="d-block w-100 screenshotCarouselImg"
+                  src={instagramSlide3}
+                  alt="Third slide"
+                />
               </div>
             </div>
           </div>
