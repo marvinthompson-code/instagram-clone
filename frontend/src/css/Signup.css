@@ -1,0 +1,11 @@
+.signupContainer {
+    margin: 0 auto;
+    max-width: 935px;
+    width: 100%;
+    text-align: -webkit-center;
+}
+.innerContainer {
+    justify-content: center;
+    margin-top: 12px;
+    max-width: 350px;
+}

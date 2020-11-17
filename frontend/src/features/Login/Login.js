@@ -55,7 +55,7 @@ const Login = () => {
           <button type="submit" className="btn btn-primary submitButton">
             Submit
           </button>
-          <hr class="my-4"></hr>
+          <hr className="my-4"></hr>
           <button type="submit" className="btn btn-primary submitButton">
             Guest Login
           </button>
