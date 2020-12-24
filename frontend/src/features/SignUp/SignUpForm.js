@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { storage } from "../../firebase";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -17,6 +18,7 @@ const SignUpForm = () => {
   // image states
   const [imageAsFile, setImageAsFile] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [toggleUploadMsg, setToggleUploadMsg] = useState(false);
 
   // variables
   const API = apiURL();
@@ -25,19 +27,63 @@ const SignUpForm = () => {
 
   // image Upload
 
-  // handle firebase upload
-
+  
   // handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let res = await signUp(email, password);
+      console.log("Show user", res)
+      await axios.post(`${API}/users/addUser`, {
+        id: res.user.uid,
+        email,
+        full_name
+      })
       // axios post request to users table
       // pass in information as an object
     } catch (error) {}
   };
 
-  const handleImageAsFile = () => {};
+  const handleImageAsFile = (e) => {
+    const image = e.target.files[0];
+    const types = ["image/png", "image/jpeg", "image/gif", "image/jpg"];
+    if (types.every((type) => image.type !== type)) {
+      alert(`${image.type} is not a supported format`);
+    } else {
+      setImageAsFile((imageFile) => image);
+    }
+  };
+
+  const handleFirebaseUpload = () => {
+    if (imageAsFile === "") {
+      alert("Please choose a valid file before uploading");
+    } else if (imageAsFile !== null) {
+      const uploadTask = storage
+        .ref(`/images/${imageAsFile.name}`)
+        .put(imageAsFile);
+      uploadTask.on(
+        "state_changed",
+        (snapShot) => {
+          console.log(snapShot);
+        },
+        (err) => {
+          console.log(err);
+        },
+        () => {
+          storage
+            .ref("images")
+            .child(imageAsFile.name)
+            .getDownloadURL()
+            .then((fireBaseUrl) => {
+              setImageUrl(fireBaseUrl);
+            });
+        }
+      );
+      setToggleUploadMsg(true);
+    } else {
+      setToggleUploadMsg(false);
+    }
+  };
 
   return (
     <div className="jumbotron signupJumbo">

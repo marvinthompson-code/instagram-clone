@@ -8,10 +8,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 // componenets
-import Home from '../src/features/Home/Home'
-import SignUp from '../src/features/SignUp/SignUp'
-
-
+import Home from "../src/features/Home/Home";
+import SignUp from "../src/features/SignUp/SignUp";
+import Feed from "../src/features/Feed/Feed";
+import Profile from "../src/features/Profile/Profile";
+import About from "../src/features/About/About";
 import Nav from "./Nav";
 import Footer from "./Footer";
 
@@ -36,12 +37,17 @@ function App() {
           <SignUp />
         </Route>
 
-        <Route exact path={"/about"}></Route>
+        <Route exact path={"/about"}>
+          <About />
+        </Route>
 
-        <Route exact path={"/feed"}></Route>
+        <Route exact path={"/feed"}>
+          <Feed />
+        </Route>
 
-        <Route exact path={"/profile"}></Route>
-
+        <Route exact path={"/profile"}>
+          <Profile />
+        </Route>
       </Switch>
       <Footer />
     </div>
