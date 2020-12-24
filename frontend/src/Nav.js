@@ -14,7 +14,7 @@ const Nav = () => {
     return (
       <>
         <a class="navbar-brand FakerGramHeaderNav" href="#">
-        FakerGram
+          FakerGram
         </a>
         <button
           class="navbar-toggler"
@@ -28,6 +28,14 @@ const Nav = () => {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <form class="form-inline mx-auto order-0">
+            <input
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+          </form>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
               <NavLink to={"/feed"} class="nav-link" href="#">

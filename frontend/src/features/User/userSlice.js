@@ -17,7 +17,7 @@ export const userSlice = createSlice({
 });
 
 export const asyncLogout = () => (dispatch) => {
-  dispatch(logout());
+  dispatch(logOut());
 };
 
 export const updateUser = (user) => async (dispatch) => {
@@ -38,5 +38,5 @@ export const updateUser = (user) => async (dispatch) => {
   }
 };
 
-export const { recieveUser, logout } = userSlice.actions;
+export const { recieveUser, logOut } = userSlice.actions;
 export default userSlice.reducer;

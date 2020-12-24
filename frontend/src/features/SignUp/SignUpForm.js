@@ -104,7 +104,7 @@ const SignUpForm = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group emailDiv">
           <input
-            type="email"
+            type="text"
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
@@ -149,13 +149,17 @@ const SignUpForm = () => {
         </div>
 
         <button
-        type={"button"}
-        className={"btn btn-primary uploadSignUp"}
-        onClick={handleFirebaseUpload}
+          type={"button"}
+          className={"btn btn-primary uploadSignUp"}
+          onClick={handleFirebaseUpload}
         >
           Upload Image
         </button>
-
+        {toggleUploadMsg ? (
+          <h5 id="uploadSuccess" id="labelitem">
+            Upload successful!
+          </h5>
+        ) : null}
         <div className="form-group emailDiv">
           <textarea
             className="form-control"
