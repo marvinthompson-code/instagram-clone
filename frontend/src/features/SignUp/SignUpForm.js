@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { apiURL } from "../../util/apiURL";
 import { signUp } from "../../util/firebaseFunctions";
+import { updateUser } from "../User/userSlice";
 import "../../css/SignupForm.css";
 
 const SignUpForm = () => {
@@ -13,7 +14,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState("");
-  const [profile_picture, setProfilePicture] = useState("");
+  const [error, setError] = useState("");
 
   // image states
   const [imageAsFile, setImageAsFile] = useState("");
@@ -25,23 +26,26 @@ const SignUpForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // image Upload
-
-  
   // handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let res = await signUp(email, password);
-      console.log("Show user", res)
+      console.log("Show user", res);
       await axios.post(`${API}/users/addUser`, {
         id: res.user.uid,
         email,
-        full_name
-      })
-      // axios post request to users table
-      // pass in information as an object
-    } catch (error) {}
+        full_name,
+        bio,
+        profile_picture: imageUrl,
+      });
+      dispatch(updateUser(res.user));
+      history.push("/feed");
+      // loading??
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
+    }
   };
 
   const handleImageAsFile = (e) => {
@@ -134,6 +138,14 @@ const SignUpForm = () => {
             placeholder="Select Profile Picture"
           />
         </div>
+
+        <button
+        type={"button"}
+        className={"btn btn-primary uploadSignUp"}
+        onClick={handleFirebaseUpload}
+        >
+          Upload Image
+        </button>
 
         <div className="form-group emailDiv">
           <textarea
