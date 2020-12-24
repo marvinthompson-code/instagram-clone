@@ -23,11 +23,18 @@ function App() {
       dispatch(updateUser(user));
     });
 
+    // important
+    // feed is a protected route!
+    // profile is a protected route
+    // login is an auth route
+    // signup is an auth route
+    // about is a regular route
+
+    
     return unsubscribe;
   }, []);
   return (
     <div className="App">
-      <Nav />
       <Switch>
         <Route exact path={"/"}>
           <Home />
@@ -38,14 +45,17 @@ function App() {
         </Route>
 
         <Route exact path={"/about"}>
+          <Nav />
           <About />
         </Route>
 
         <Route exact path={"/feed"}>
+          <Nav />
           <Feed />
         </Route>
 
         <Route exact path={"/profile"}>
+          <Nav />
           <Profile />
         </Route>
       </Switch>
