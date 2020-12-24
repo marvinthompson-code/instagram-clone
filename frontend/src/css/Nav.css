@@ -1,3 +1,8 @@
+@font-face {
+    src: url('./fonts/KaushanScript-Regular.ttf');
+    font-family: KaushanScript;
+}
+
 .nav {
     background-color: unset;
     justify-content: space-between;
@@ -5,3 +10,9 @@
     font-size: 12px;
     font-weight: 600;
 }
+
+.FakerGramHeaderNav {
+    font-family: KaushanScript;
+    /* text-align: center;
+    margin: 22px auto 12px; */
+  }
