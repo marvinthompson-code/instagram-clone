@@ -108,7 +108,7 @@ const Nav = () => {
     dispatch(asyncLogout());
     dispatch(recieveToken(null));
     logout();
-    history.push("/login");
+    history.push("/");
   };
 
   return (

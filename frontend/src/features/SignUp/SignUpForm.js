@@ -14,6 +14,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState("");
+  const [username, setUsername] = useState("")
   const [error, setError] = useState("");
 
   // image states
@@ -111,6 +112,18 @@ const SignUpForm = () => {
             placeholder="Enter Full Name"
             value={full_name}
             onChange={(e) => setFullName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group emailDiv">
+          <input
+            type="text"
+            className="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter Username"
+            value={full_name}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
