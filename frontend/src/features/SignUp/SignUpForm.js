@@ -27,15 +27,6 @@ const SignUpForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // commenting out for firebase storage
-  // service firebase.storage {
-  //   match /b/{bucket}/o {
-  //     match /{allPaths=**} {
-  //       allow read, write: if request.auth != null;
-  //     }
-  //   }
-  // }
-
   // handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,9 +36,10 @@ const SignUpForm = () => {
       await axios.post(`${API}/users/addUser`, {
         id: res.user.uid,
         email,
+        username,
         full_name,
-        bio,
         profile_picture: imageUrl,
+        bio,
       });
       dispatch(updateUser(res.user));
       history.push("/feed");

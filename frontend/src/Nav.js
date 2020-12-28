@@ -61,7 +61,7 @@ const Nav = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                About..
+                Menu
               </a>
               <div
                 class="dropdown-menu"

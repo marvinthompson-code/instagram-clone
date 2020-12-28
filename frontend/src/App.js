@@ -6,6 +6,7 @@ import "./App.css";
 import firebase from "./firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
+import AuthProvider from "./providers/AuthContext";
 
 // componenets
 import Home from "../src/features/Home/Home";
@@ -19,6 +20,7 @@ import Footer from "./Footer";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
+    window.scrollTo(0, 0);
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       dispatch(updateUser(user));
     });
@@ -30,36 +32,37 @@ function App() {
     // signup is an auth route
     // about is a regular route
 
-    
     return unsubscribe;
   }, []);
   return (
     <div className="App">
-      <Switch>
-        <Route exact path={"/"}>
-          <Home />
-        </Route>
+      <AuthProvider>
+        <Switch>
+          <Route exact path={"/"}>
+            <Home />
+          </Route>
 
-        <Route exact path={"/signup"}>
-          <SignUp />
-        </Route>
+          <Route exact path={"/signup"}>
+            <SignUp />
+          </Route>
 
-        <Route exact path={"/about"}>
-          <Nav />
-          <About />
-        </Route>
+          <Route exact path={"/about"}>
+            <Nav />
+            <About />
+          </Route>
 
-        <Route exact path={"/feed"}>
-          <Nav />
-          <Feed />
-        </Route>
+          <Route exact path={"/feed"}>
+            <Nav />
+            <Feed />
+          </Route>
 
-        <Route exact path={"/profile"}>
-          <Nav />
-          <Profile />
-        </Route>
-      </Switch>
-      <Footer />
+          <Route exact path={"/profile"}>
+            <Nav />
+            <Profile />
+          </Route>
+        </Switch>
+        <Footer />
+      </AuthProvider>
     </div>
   );
 }
