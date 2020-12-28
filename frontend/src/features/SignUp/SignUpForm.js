@@ -122,7 +122,7 @@ const SignUpForm = () => {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Enter Username"
-            value={full_name}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
