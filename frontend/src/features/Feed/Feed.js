@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import PostItem from "../Posts/PostItem";
 import { useDispatch, useSelector } from "react-redux";
 import { recieveAllPosts, selectPosts } from "../Posts/postsSlice";
+import { useHistory, useRouteMatch } from "react-router-dom";
+import addPost from "../../css/images/add.png";
 import { apiURL } from "../../util/apiURL";
 import axios from "axios";
 import "../../css/Feed.css";
@@ -11,6 +13,8 @@ const Feed = () => {
   const API = apiURL();
   const posts = useSelector(selectPosts);
   const user = useSelector((state) => state.user);
+  const history = useHistory();
+  const match = useRouteMatch();
   const dispatch = useDispatch();
 
   // information for the userMenu
@@ -42,7 +46,24 @@ const Feed = () => {
       <div className="row">
         <div className="postFeed col"></div>
         <div className="userMenu col">
-          <img src={profilePicture} alt={"profile"} className={"profileMenuImg"}/>
+          <div className="row profileMenu">
+            <div className={"col menuSection"}>
+              <img
+                src={profilePicture}
+                alt={"profile"}
+                className={"profileMenuImg"}
+                onClick={() => history.push(`/profile/${user.id}`)}
+              />
+              <br></br>
+              <h2 className={"menuText"}>View Profile</h2>
+            </div>
+
+            <div className={"col menuSection"}>
+              <img src={addPost} alt={"addPost"} className={"profileMenuImg"} />
+              <br></br>
+              <h2 className={"menuText"}>Add Post</h2>
+            </div>
+          </div>
         </div>
       </div>
     </div>

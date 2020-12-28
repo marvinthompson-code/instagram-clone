@@ -1,11 +1,33 @@
 .postFeed {
-
 }
 
 .userMenu {
-
 }
 
 .profileMenuImg {
-    
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 100px;
+  border: solid grey 2px;
+  transition: 1s;
+
+  padding: 2px;
+}
+
+.profileMenuImg:hover {
+  border: solid #3f729b 2px;
+}
+
+.profileMenu {
+  text-align: center;
+}
+
+.menuText {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.menuSection {
+    margin: 5px;
 }

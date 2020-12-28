@@ -56,7 +56,7 @@ function App() {
             <Feed />
           </Route>
 
-          <Route exact path={"/profile"}>
+          <Route exact path={"/profile/:id"}>
             <Nav />
             <Profile />
           </Route>
