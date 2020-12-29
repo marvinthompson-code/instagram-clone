@@ -1,0 +1,11 @@
+.addPostText {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.addPostSubmit{
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;  
+}

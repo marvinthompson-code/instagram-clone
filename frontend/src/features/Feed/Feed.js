@@ -8,6 +8,9 @@ import { apiURL } from "../../util/apiURL";
 import axios from "axios";
 import "../../css/Feed.css";
 
+// components
+import PostForm from "../Posts/PostForm"
+
 const Feed = () => {
   // general variables, API URL, currently logged in user from state
   const API = apiURL();
@@ -59,13 +62,20 @@ const Feed = () => {
             </div>
 
             <div className={"col menuSection"}>
-              <img src={addPost} alt={"addPost"} className={"profileMenuImg"} />
+              <img
+                src={addPost}
+                alt={"addPost"}
+                className={"profileMenuImg"}
+                data-toggle="modal"
+                data-target="#exampleModalCenter"
+              />
               <br></br>
               <h2 className={"menuText"}>Add Post</h2>
             </div>
           </div>
         </div>
       </div>
+      <PostForm />
     </div>
   );
 };
