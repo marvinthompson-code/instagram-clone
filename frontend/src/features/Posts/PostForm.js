@@ -1,14 +1,69 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import { storage } from "../../firebase";
 import { apiURL } from "../../util/apiURL";
 import "../../css/PostForm.css"
+import { createNewPost } from './postsSlice'
+import { useDispatch } from "react-redux"
 
 const PostForm = () => {
   const [caption, setCaption] = useState("");
+  const [imageAsFile, setImageAsFile] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [toggleUploadMsg, setToggleUploadMsg] = useState(false);
 
+  // variables
+  const dispatch = useDispatch()
+  const API = apiURL()
   // make an image preview section
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(createNewPost({caption: caption, post_image_url: imageUrl}))
+    setCaption("")
+  };
+
+  const handleImageAsFile = (e) => {
+    const image = e.target.files[0];
+    const types = ["image/png", "image/jpeg", "image/gif", "image/jpg"];
+    if (types.every((type) => image.type !== type)) {
+      alert(`${image.type} is not a supported format`);
+    } else {
+      setImageAsFile((imageFile) => image);
+    }
+  };
+
+  const handleFirebaseUpload = () => {
+    if (imageAsFile === "") {
+      alert("Please choose a valid file before uploading");
+    } else if (imageAsFile !== null) {
+      const uploadTask = storage
+        .ref(`/images/${imageAsFile.name}`)
+        .put(imageAsFile);
+      uploadTask.on(
+        "state_changed",
+        (snapShot) => {
+          console.log(snapShot);
+        },
+        (err) => {
+          console.log(err);
+        },
+        () => {
+          storage
+            .ref("images")
+            .child(imageAsFile.name)
+            .getDownloadURL()
+            .then((fireBaseUrl) => {
+              setImageUrl(fireBaseUrl);
+            });
+        }
+      );
+      setToggleUploadMsg(true);
+    } else {
+      setToggleUploadMsg(false);
+    }
+  };
+
+
   return (
     <div
       className="modal fade"
@@ -41,16 +96,23 @@ const PostForm = () => {
                     type="file"
                     className="custom-file-input"
                     id="inputGroupFile02"
+                    onChange={handleImageAsFile}
+                    placeholder={"Select an image!"}
                   />
                   <label className="custom-file-label" for="inputGroupFile02">
                     Choose file
                   </label>
                 </div>
-                <div className="input-group-append">
+                <div className="input-group-append" onClick={handleFirebaseUpload}>
                   <span className="input-group-text" id="">
                     Upload
                   </span>
                 </div>
+                {toggleUploadMsg ? (
+          <h5 id="uploadSuccess" id="labelitem">
+            Upload successful!
+          </h5>
+        ) : null}
               </div>
               
               <div className="form-group captionDiv">

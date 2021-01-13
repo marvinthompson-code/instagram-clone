@@ -5,10 +5,11 @@ import { updateUser } from "./features/User/userSlice";
 import "./App.css";
 import firebase from "./firebase";
 import { useSelector, useDispatch } from "react-redux";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import AuthProvider from "./providers/AuthContext";
+import { AuthRoute, ProtectedRoute } from './util/routesUtil'
 
-// componenets
+// components
 import Home from "../src/features/Home/Home";
 import SignUp from "../src/features/SignUp/SignUp";
 import Feed from "../src/features/Feed/Feed";
@@ -25,13 +26,6 @@ function App() {
       dispatch(updateUser(user));
     });
 
-    // important
-    // feed is a protected route!
-    // profile is a protected route
-    // login is an auth route
-    // signup is an auth route
-    // about is a regular route
-
     return unsubscribe;
   }, []);
   return (
@@ -42,24 +36,24 @@ function App() {
             <Home />
           </Route>
 
-          <Route exact path={"/signup"}>
+          <AuthRoute exact path={"/signup"}>
             <SignUp />
-          </Route>
+          </AuthRoute>
 
           <Route exact path={"/about"}>
             <Nav />
             <About />
           </Route>
 
-          <Route exact path={"/feed"}>
+          <ProtectedRoute exact path={"/feed"}>
             <Nav />
             <Feed />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path={"/profile/:id"}>
+          <ProtectedRoute exact path={"/profile/:id"}>
             <Nav />
             <Profile />
-          </Route>
+          </ProtectedRoute>
         </Switch>
         <Footer />
       </AuthProvider>
