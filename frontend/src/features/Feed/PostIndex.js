@@ -32,7 +32,9 @@ const PostIndex = () => {
             <ul className={"feedPosts text-center vertical-center"}>{feedPosts.length === 0 ?(
                 <>
                 <img src={camera} className={"camera"}/>
-                 <h1>No Posts to Show</h1>
+                <br></br>
+                 <h1 className="NoPosts">No Posts to Show</h1>
+                 <hr></hr>
                  </>
              ) : feedPosts}</ul>
     )
