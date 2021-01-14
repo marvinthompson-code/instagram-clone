@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PostItem from "../Posts/PostItem";
+import PostItem from "./PostItem";
 import { useDispatch, useSelector } from "react-redux";
 import { recieveAllPosts, selectPosts } from "../Posts/postsSlice";
 import { useHistory, useRouteMatch } from "react-router-dom";
@@ -10,6 +10,7 @@ import "../../css/Feed.css";
 
 // components
 import PostForm from "../Posts/PostForm"
+import PostIndex from "./PostIndex"
 
 const Feed = () => {
   // general variables, API URL, currently logged in user from state
@@ -24,16 +25,6 @@ const Feed = () => {
   const [profilePicture, setProfilePicture] = useState("");
   const [fullName, setFullName] = useState("");
 
-  // maybe a button that takes you to a modal for a post form?
-  // import single post component
-
-  useEffect(() => {
-    // useEffect, fetch all posts in the feed
-    const fetchPosts = async () => {
-      // res
-      // dispatch a recieve all posts action, dispatch(recieveAllPosts(res.data.body.posts))
-    };
-  });
   useEffect(() => {
     const fetchUserInfo = async (id) => {
       let res = await axios.get(`${API}/users/${id}`);
@@ -44,12 +35,18 @@ const Feed = () => {
     };
     fetchUserInfo(user.id);
   }, []);
+
   return (
     <div className="container">
       <div className="row">
-        <div className="postFeed col"></div>
+        
+        <div className="postFeed col">
+          <PostIndex />
+        </div>
+
         <div className="userMenu col">
-          <div className="row profileMenu">
+          <div className="profileMenu row">
+
             <div className={"col menuSection"}>
               <img
                 src={profilePicture}
@@ -72,8 +69,11 @@ const Feed = () => {
               <br></br>
               <h2 className={"menuText"}>Add Post</h2>
             </div>
+
           </div>
         </div>
+
+
       </div>
       <PostForm />
     </div>

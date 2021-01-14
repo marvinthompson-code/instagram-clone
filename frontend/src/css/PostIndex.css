@@ -1,0 +1,17 @@
+.camera { 
+    max-height: 80px;
+    max-width: 80px;
+    opacity: 0.65;
+}
+
+.feedPosts  {
+    padding-left: unset;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
