@@ -18,3 +18,5 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://instagram-clone-d6f78.firebaseio.com"
   });
+
+  module.exports = admin

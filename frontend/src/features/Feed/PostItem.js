@@ -9,15 +9,16 @@ const PostItem = ({ post }) => {
   const history = useHistory();
   const API = apiURL();
   // state variables
-  const [ username, setUsername] = useState("")
-  const [ profilePicture, setProfilePicture] = useState("")
-  // post.caption
-  // post.post_image_url
+  let { caption, id, owner_id, post_image_url, time_stamp } = post
+  
   // post.time_stamp
   // postowner username
   // postowner profilepic
   // giv the div an id of post.id
 
+  const [ username, setUsername] = useState("")
+  const [ profilePicture, setProfilePicture] = useState("")
+  
   useEffect(() => {
     const fetchPostOwnerInfo = async (id) => {
       // axios.get request on the post.owner_id
@@ -25,8 +26,12 @@ const PostItem = ({ post }) => {
     // call fetchPostOwnerInfo on post.owner_id
   }, []);
   return(
-  <div>
-
+  <div className={"container"}>
+  <div className={"postItemDiv"} key={post.id}>
+    <img src={post_image_url} alt={"post image"} />
+    <p className="postItemCaption">{caption}</p>
+    <p className={"postItemTimeStamp"}>{time_stamp}</p>
+  </div>
   </div>
   )
 };
