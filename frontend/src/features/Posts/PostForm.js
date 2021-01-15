@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { storage } from "../../firebase";
-import { apiURL } from "../../util/apiURL";
-import "../../css/PostForm.css"
 import { createNewPost } from './postsSlice'
 import { useDispatch } from "react-redux"
+import "../../css/PostForm.css"
 
 const PostForm = () => {
   const [caption, setCaption] = useState("");
@@ -13,15 +12,6 @@ const PostForm = () => {
 
   // variables
   const dispatch = useDispatch()
-  const API = apiURL()
-  // make an image preview section
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch(createNewPost({caption: caption, post_image_url: imageUrl}))
-    setCaption("")
-  };
-
   const handleImageAsFile = (e) => {
     const image = e.target.files[0];
     const types = ["image/png", "image/jpeg", "image/gif", "image/jpg"];
@@ -63,6 +53,11 @@ const PostForm = () => {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(createNewPost({caption: caption, post_image_url: imageUrl}))
+    setCaption("")
+  };
 
   return (
     <div

@@ -4,9 +4,8 @@ import React, { useEffect } from "react";
 import { updateUser } from "./features/User/userSlice";
 import "./App.css";
 import firebase from "./firebase";
-import { useSelector, useDispatch } from "react-redux";
-import { Route, Switch, Redirect } from "react-router-dom";
-// import AuthProvider from "./providers/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Switch } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from './util/routesUtil'
 
 // components
@@ -17,16 +16,15 @@ import Profile from "../src/features/Profile/Profile";
 import About from "../src/features/About/About";
 import Nav from "./Nav";
 import Footer from "./Footer";
+import { selectLoading } from "./features/Loading/loadingSlice";
 
 function App() {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       dispatch(updateUser(user));
     });
-
     return unsubscribe;
   }, []);
 
@@ -34,16 +32,14 @@ function App() {
     window.scrollTo(0, 0);
   }, [])
 
+  const loading = useSelector(selectLoading)
+  if (loading) return <h1>...LOADING...</h1>
+
   return (
     <div className="App">
-
         <Switch>
           <AuthRoute exact path={"/"}>
             <Home />
-          </AuthRoute>
-
-          <AuthRoute path={"/login"}>
-            <Redirect to={"/"}/>
           </AuthRoute>
 
           <AuthRoute exact path={"/signup"}>
@@ -66,7 +62,6 @@ function App() {
           </ProtectedRoute>
         </Switch>
         <Footer />
-    
     </div>
   );
 }

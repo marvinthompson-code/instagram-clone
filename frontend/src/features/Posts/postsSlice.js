@@ -31,6 +31,7 @@ export const postsSlice = createSlice({
         },
       });
       let { newPost } = res.data.body;
+      debugger
       dispatch(addPost(newPost));
     } catch (error) {
     

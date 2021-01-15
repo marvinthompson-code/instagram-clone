@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { asyncLogout } from "./features/User/userSlice";
 import { logout } from "./util/firebaseFunctions";
 import { recieveToken } from "./features/User/tokenSlice";
@@ -9,7 +9,7 @@ import "./css/Nav.css";
 const Nav = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const user = useSelector((state) => state.user);
+
   const displayButtons = () => {
     return (
       <>
