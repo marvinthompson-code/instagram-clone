@@ -8,8 +8,9 @@ import "../../css/Login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
   const [error, setError] = useState(null);
+
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -22,6 +23,7 @@ const Login = () => {
       setError(err.message);
     }
   };
+  
   return (
     <div className="jumbotron loginJumbo">
       <h1 className="display-4 FakerGramHeader">FakerGram</h1>

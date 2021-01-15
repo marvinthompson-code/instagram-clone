@@ -4,18 +4,18 @@ import { apiURL } from "../../util/apiURL";
 import axios from "axios";
 
 const PostItem = ({ post }) => {
+  debugger
   // variables
   const history = useHistory();
   const API = apiURL();
-
   // state variables
   const [ username, setUsername] = useState("")
   const [ profilePicture, setProfilePicture] = useState("")
-
-
   // post.caption
   // post.post_image_url
   // post.time_stamp
+  // postowner username
+  // postowner profilepic
   // giv the div an id of post.id
 
   useEffect(() => {
@@ -24,7 +24,11 @@ const PostItem = ({ post }) => {
     };
     // call fetchPostOwnerInfo on post.owner_id
   }, []);
-  return <div></div>;
+  return(
+  <div>
+
+  </div>
+  )
 };
 
 export default PostItem;

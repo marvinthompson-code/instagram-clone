@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { apiURL } from "../../util/apiURL";
 import { getFirebaseIdToken } from "../../util/firebaseFunctions";
 import { recieveToken } from "./tokenSlice";
 import { setLoading } from "../Loading/loadingSlice";
+
+const API = apiURL()
 
 export const userSlice = createSlice({
   name: "user",

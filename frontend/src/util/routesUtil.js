@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import {  useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 export const AuthRoute = ({children, ...rest}) => {
    const user = useSelector(state => state.user)
@@ -20,7 +20,7 @@ export const ProtectedRoute = ({children, ...rest}) => {
         <Route 
         {...rest}
            render={({location}) => {
-               return user ? children : <Redirect to="/login"/>
+               return user ? children : <Redirect to="/"/>
            }}
         />
    )

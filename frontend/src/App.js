@@ -5,8 +5,8 @@ import { updateUser } from "./features/User/userSlice";
 import "./App.css";
 import firebase from "./firebase";
 import { useSelector, useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
-import AuthProvider from "./providers/AuthContext";
+import { Route, Switch, Redirect } from "react-router-dom";
+// import AuthProvider from "./providers/AuthContext";
 import { AuthRoute, ProtectedRoute } from './util/routesUtil'
 
 // components
@@ -19,22 +19,32 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 
 function App() {
+
   const dispatch = useDispatch();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       dispatch(updateUser(user));
     });
 
     return unsubscribe;
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   return (
     <div className="App">
-      <AuthProvider>
+
         <Switch>
-          <Route exact path={"/"}>
+          <AuthRoute exact path={"/"}>
             <Home />
-          </Route>
+          </AuthRoute>
+
+          <AuthRoute path={"/login"}>
+            <Redirect to={"/"}/>
+          </AuthRoute>
 
           <AuthRoute exact path={"/signup"}>
             <SignUp />
@@ -56,7 +66,7 @@ function App() {
           </ProtectedRoute>
         </Switch>
         <Footer />
-      </AuthProvider>
+    
     </div>
   );
 }
