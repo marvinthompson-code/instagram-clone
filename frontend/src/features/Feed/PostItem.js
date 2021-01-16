@@ -26,7 +26,7 @@ const PostItem = ({ post }) => {
   }, []);
 
   return(
-  <div class="card postCard" style={{width: "20rem"}}>
+  <div class="card postCard" >
     <div class="card-header">
     Featured
   </div>
