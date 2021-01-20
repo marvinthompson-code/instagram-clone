@@ -33,7 +33,7 @@ const Feed = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container feedContainer">
       <div className="row">
         
         <div className="postFeed col">

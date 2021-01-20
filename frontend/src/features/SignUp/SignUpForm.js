@@ -60,6 +60,10 @@ const SignUpForm = () => {
     }
   };
 
+  // const handleClick = () => {
+  //   window.scrollTo(0,0)
+  // }
+
   const handleFirebaseUpload = () => {
     if (imageAsFile === "") {
       alert("Please choose a valid file before uploading");

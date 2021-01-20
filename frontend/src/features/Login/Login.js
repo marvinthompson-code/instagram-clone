@@ -23,7 +23,8 @@ const Login = () => {
       setError(err.message);
     }
   };
-  
+
+
   return (
     <div className="jumbotron loginJumbo">
       <h1 className="display-4 FakerGramHeader">FakerGram</h1>
